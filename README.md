@@ -4,7 +4,8 @@ Bro Live! is a Bro training system that is built upon Jon Schipp's [sandbox trai
 
 # Installation
 
-Must have Docker 1.2.0 to run our official Brolive Docker image because it requres passing extra capabilities(7).
+Must have Docker 1.2.0 to run our [official Brolive Docker image](https://registry.hub.docker.com/u/broplatform/brolive/) because it requires adding extra capabilities(7)
+to the container (NET_RAW, NET_ADMIN).
 
 If you're using a recent Ubuntu then the entire process is taken care of in the following example:
 ```shell
