@@ -71,7 +71,7 @@ Referring you to the [documentation](https://github.com/jonschipp/zookeeper/blob
 
 # Use
 
-Default password is demo.
+Give your students the host IP to ssh to. Default password is demo.
 
 ```shell
 ssh demo@<ip>
@@ -115,3 +115,10 @@ Here's a brief demonstration:
         demo@bro:~$ which bro
         /usr/local/bro/bin/bro
 ```
+
+# BroLive! Image Usability Notes
+
+* /usr/local/bro is a symlink to /home/demo/bro (owned by demo user)
+* /home/demo/exercises is a symlink to /exercises 
+* gawk, nano, vim, and emacs are installed
+* To use broctl, edit /usr/local/bro/etc/node.cfg (/home/demo/bro/etc/node.cfg) with the correct interface. Probably lo since networking is disabled by default.
