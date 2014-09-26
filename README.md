@@ -45,6 +45,13 @@ If you're running Docker 1.2.0+ then use the following command to install the Br
 make install-sample-config
 ```
 
+Alternatively,
+```shell
+docker pull broplatform/brolive
+docker tag broplatform/brolive brolive
+cp bro-live/configs/bro-cap.conf /etc/zookeeper/brolive.conf
+```
+
 # Exercises
 
 Place exercises e.g. PCAP's, bro scripts, etc. in the /exercises directory on the host.
