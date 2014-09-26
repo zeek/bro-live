@@ -21,7 +21,7 @@ make install-sample-config
 
 If you're not running Ubuntu then you will have to either
 * Install Docker 1.2.0+ from source
-* Install distribution's Docker package and build your own Docker image based on Brolive w/o extra capabilities(7) (see included file)
+* Install distribution's Docker package (presuming older than 1.2.0) and build your own image w/o extra capabilities(7) (see *dockerfiles/bro-sudo.conf*)
 
 ```shell
 git clone https://github.com/jonschipp/zookeeper
@@ -48,7 +48,7 @@ make install-sample-config
 
 Place exercises e.g. PCAP's, bro scripts, etc. in the /exercises directory on the host.
 The /exercises directory is mounted read only in the container as /exercises and changes
-to the files or additions to the folder are immediately available to all users.
+to the files, or contents of the directory, are immediately available to all container users.
 
 ## Sample Exercises
 
