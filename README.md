@@ -1,6 +1,6 @@
 Official repository of the Bro Live! scripts.
 
-Bro Live! is a Bro training system that is built upon Jon Schipp's [sandbox training scripts](https://github.com/jonschipp/zookeeper).
+Bro Live! is a Bro training system that is built upon [Jon Schipp](http://jonschipp.com)'s [Linux-based sandbox training scripts](https://github.com/jonschipp/zookeeper).
 
 # Installation
 
