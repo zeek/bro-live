@@ -15,7 +15,7 @@ make install
 make install-docker
 make user-config
 make security-config
-make install-sample-config
+make install-brolive-config
 ```
 
 ## Manual
@@ -42,7 +42,7 @@ docker build -t brolive - < bro-sudo
 
 If you're running Docker 1.2.0+ then use the following command to install the Brolive image with network capabilities for Bro.
 ```shell
-make install-sample-config
+make install-brolive-config
 ```
 
 Alternatively,
