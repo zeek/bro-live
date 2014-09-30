@@ -1,6 +1,6 @@
 Official repository of the Bro Live! scripts.
 
-Bro Live! is a Bro training system that is built upon [Jon Schipp](http://jonschipp.com)'s [Linux-based sandbox training scripts](https://github.com/jonschipp/zookeeper).
+Bro Live! is a Bro training system that is built upon [Jon Schipp](http://jonschipp.com)'s [Linux-based sandbox training scripts](https://github.com/jonschipp/islet).
 
 # Installation
 
@@ -9,8 +9,8 @@ to the container (NET_RAW, NET_ADMIN).
 
 If you're using a recent Ubuntu then the entire process is taken care of in the following example:
 ```shell
-git clone https://github.com/jonschipp/zookeeper
-cd zookeeper
+git clone https://github.com/jonschipp/islet
+cd islet
 make install
 make install-docker
 make user-config
@@ -25,8 +25,8 @@ If you're not running Ubuntu then you will have to either
 * Install distribution's Docker package (presuming older than 1.2.0) and build your own image w/o extra capabilities(7) (see *dockerfiles/bro-sudo.conf*)
 
 ```shell
-git clone https://github.com/jonschipp/zookeeper
-cd zookeeper
+git clone https://github.com/jonschipp/islet
+cd islet
 make install
 make user-config
 make security-config
@@ -36,7 +36,7 @@ The following commands will install a Docker image configured with sudo for bro 
 Use this image if you're using a version of Docker prior to 1.2.0
 ```shell
 cp bro-live/dockerfiles/bro-sudo
-cp bro-live/configs/bro-sudo.conf /etc/zookeeper/brolive.conf
+cp bro-live/configs/bro-sudo.conf /etc/islet/brolive.conf
 docker build -t brolive - < bro-sudo
 ```
 
@@ -49,7 +49,7 @@ Alternatively,
 ```shell
 docker pull broplatform/brolive
 docker tag broplatform/brolive brolive
-cp bro-live/configs/bro-cap.conf /etc/zookeeper/brolive.conf
+cp bro-live/configs/bro-cap.conf /etc/islet/brolive.conf
 ```
 
 # Exercises
@@ -67,7 +67,7 @@ To install the BroCon14 exercise set run the following command:
 
 # Administration
 
-Referring you to the [documentation](https://github.com/jonschipp/zookeeper/blob/master/README.md)
+Referring you to the [documentation](https://github.com/jonschipp/islet/blob/master/README.md)
 
 # Use
 
