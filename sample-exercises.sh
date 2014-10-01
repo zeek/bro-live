@@ -9,12 +9,7 @@ COWSAY=/usr/games/cowsay
 IRCSAY=/usr/local/bin/ircsay
 IRC_CHAN="#replace_me"
 HOST=$(hostname -s)
-LOGFILE=/root/bro-sandbox_install.log
 EMAIL=user@company.com
-
-# Logging
-exec > >(tee -a "$LOGFILE") 2>&1
-echo -e "\n --> Logging stdout & stderr to $LOGFILE"
 
 # Must run as root
 if [ $UID -ne 0 ]; then
@@ -77,9 +72,10 @@ fi
 
 cd $DIR
 
+url="http://www.bro.org/static/BroCon14/BroCon14.tar.gz"
 if [ ! -d $DIR/BroCon14 ]
 then
-	wget http://www.bro.org/static/BroCon14/BroCon14.tar.gz 2>/dev/null
+	wget $url 2>/dev/null
 	if [ $? -ne 0 ]; then
 		echo "$COUNT - Download for $url failed!"
 	else
