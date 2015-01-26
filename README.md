@@ -4,7 +4,7 @@ Bro Live! is a Bro training system that is built upon [Jon Schipp](http://jonsch
 
 # Installation
 
-Must have Docker 1.2.0 to run our [official Brolive Docker image](https://registry.hub.docker.com/u/broplatform/brolive/) because it requires adding extra capabilities(7)
+Must have Docker 1.2+ to run our [official Brolive Docker image](https://registry.hub.docker.com/u/broplatform/brolive/) because it requires adding extra capabilities(7)
 to the container (NET_RAW, NET_ADMIN).
 
 If you're using a recent Ubuntu then the entire process is taken care of in the following example:
@@ -12,7 +12,6 @@ If you're using a recent Ubuntu then the entire process is taken care of in the 
 git clone https://github.com/jonschipp/islet
 cd islet
 make install
-make install-docker
 make user-config
 make security-config
 make install-brolive-config
@@ -21,9 +20,10 @@ make install-brolive-config
 ## Manual
 
 If you're not running Ubuntu then you will have to either
-* Install Docker 1.2.0+ from source
+* Install Docker 1.2+ from source
 * Install distribution's Docker package (presuming older than 1.2.0) and build your own image w/o extra capabilities(7) (see *dockerfiles/bro-sudo.conf*)
 
+and then
 ```shell
 git clone https://github.com/jonschipp/islet
 cd islet
@@ -40,7 +40,7 @@ cp bro-live/configs/bro-sudo.conf /etc/islet/brolive.conf
 docker build -t brolive - < bro-sudo
 ```
 
-If you're running Docker 1.2.0+ then use the following command to install the Brolive image with network capabilities for Bro.
+If you're running Docker 1.2+ then use the following command to install the Brolive image with network capabilities for Bro.
 ```shell
 make install-brolive-config
 ```
@@ -94,22 +94,22 @@ Here's a brief demonstration:
           \     <====// /
             -----------
 
-        A place to try out Bro. 
+        A place to try out Bro.
 
         Are you a new or existing user? [new/existing]: new
-        
+
         A temporary account will be created so that you can resume your session. Account is valid for the length of the event.
-        
+
         Choose a username [a-zA-Z0-9]: jon
         Your username is jon
-        Choose a password: 
-        Verify your password: 
+        Choose a password:
+        Verify your password:
         Your account will expire on Fri 29 Aug 2014 07:40:11 PM UTC
-        
+
         Enjoy yourself!
         Training materials are located in /exercises.
         e.g. $ bro -r /exercises/beginner/http.pcap
-        
+
         demo@bro:~$ pwd
         /home/demo
         demo@bro:~$ which bro
@@ -119,6 +119,6 @@ Here's a brief demonstration:
 # BroLive! Image Usability Notes
 
 * /usr/local/bro is a symlink to /home/demo/bro (owned by demo user)
-* /home/demo/exercises is a symlink to /exercises 
+* /home/demo/exercises is a symlink to /exercises
 * gawk, nano, vim, and emacs are installed
 * To use broctl, edit /usr/local/bro/etc/node.cfg (/home/demo/bro/etc/node.cfg) with the correct interface. Probably lo since networking is disabled by default.
