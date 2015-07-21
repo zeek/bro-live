@@ -9,6 +9,7 @@ to the container (NET_RAW).
 
 If you're using a recent Ubuntu then the entire process is taken care of in the following example:
 ```shell
+apt-get install sqlite make
 git clone https://github.com/jonschipp/islet
 cd islet
 make bro-training
@@ -20,7 +21,7 @@ If you're not running Debian/Ubuntu then you will have to either
 * Install latest Docker from source
 * Install distribution's Docker package and build your own image
 
-and then
+after install sqlite3 and make and then run the following commands
 ```shell
 git clone https://github.com/jonschipp/islet
 cd islet
