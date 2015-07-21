@@ -1,0 +1,42 @@
+# Bro Sandbox - Bro 2.4
+#
+# VERSION               1.2
+FROM      ubuntu
+MAINTAINER Jon Schipp <jonschipp@gmail.com>
+
+# Specify container username e.g. training, demo
+ENV VIRTUSER demo
+# Specify Bro version to download and install (e.g. bro-2.2, bro-2.3)
+ENV BRO_VERSION bro-2.4
+# Place to install bro
+ENV DST /opt/bro
+
+RUN apt-get update
+RUN apt-get install -y build-essential cmake make gcc g++ flex bison libpcap-dev libgeoip-dev libssl-dev python-dev zlib1g-dev libmagic-dev swig2.0 wget
+RUN apt-get install -y wget curl screen tmux gawk vim emacs nano
+RUN adduser --disabled-password --gecos "" $VIRTUSER
+
+USER $VIRTUSER
+WORKDIR /home/$VIRTUSER
+RUN wget http://www.bro.org/downloads/release/$BRO_VERSION.tar.gz && tar -xzf $BRO_VERSION.tar.gz
+RUN cd $BRO_VERSION && ./configure --prefix=$DST && make
+
+USER root
+RUN  make install
+RUN rm -rf /home/$VIRTUSER/$BRO_VERSION*
+RUN setcap cap_net_raw=eip $DST/bin/bro
+
+# Environment
+RUN echo "PATH=$PATH:/opt/bro/bin"              > /etc/profile.d/bro.sh
+RUN chmod 555 /etc/profile.d/bro.sh
+RUN echo 'alias bro-column="sed \"s/fields.//;s/types.//\" | column -s $'\t' -t"'   >> /etc/profile.d/bro.sh
+RUN echo "alias bro-awk='awk -F\"  \"'"             >> /etc/profile.d/bro.sh
+RUN echo 'bro-grep() { grep -E "(^#)|$1" $2; }'           >> /etc/profile.d/bro.sh
+RUN echo 'topcount() { sort | uniq -c | sort -rn | head -n ${1:-10}; }'     >> /etc/profile.d/bro.sh
+RUN echo "set nocompatible" > /home/$VIRTUSER/.vimrc && chown $VIRTUSER /home/$VIRTUSER/.vimrc
+RUN echo "export TMOUT=1800; readonly TMOUT" > /etc/profile.d/timeout.sh && chmod 555 /etc/profile.d/timeout.sh
+RUN su -l -c 'ln -s /exercises exercises' $VIRTUSER
+
+# Passwords
+#RUN echo "$VIRTUSER:$VIRTUSER"   | chpasswd
+#RUN echo "root:putsomethinghere" | chpasswd
