@@ -38,6 +38,7 @@ RUN echo "set nocompatible" > /home/$VIRTUSER/.vimrc && chown $VIRTUSER /home/$V
 RUN echo "export TMOUT=1800; readonly TMOUT" > /etc/profile.d/timeout.sh && chmod 555 /etc/profile.d/timeout.sh
 RUN su -l -c 'ln -s /exercises exercises' $VIRTUSER
 RUN chmod -R o+w $DST
+WORKDIR /home/$VIRTUSER
 
 # Passwords
 #RUN echo "$VIRTUSER:$VIRTUSER" | chpasswd
