@@ -1,4 +1,4 @@
-# Bro Sandbox - Bro 2.3.2
+# Bro Sandbox - Bro 2.4
 #
 # VERSION               1.1
 FROM      ubuntu
@@ -7,7 +7,7 @@ MAINTAINER Jon Schipp <jonschipp@gmail.com>
 # Specify container username e.g. training, demo
 ENV VIRTUSER demo
 # Specify Bro version to download and install (e.g. bro-2.2, bro-2.3)
-ENV BRO_VERSION bro-2.3.2
+ENV BRO_VERSION bro-2.4
 # Place to install bro
 ENV DST ohome/$VIRTUSER/bro
 

@@ -1,13 +1,13 @@
-# Bro Sandbox - Bro 2.3.2
+# Bro Sandbox - Bro 2.4
 #
-# VERSION               1.1
+# VERSION               1.2
 FROM      ubuntu
 MAINTAINER Jon Schipp <jonschipp@gmail.com>
 
 # Specify container username e.g. training, demo
 ENV VIRTUSER demo
 # Specify Bro version to download and install (e.g. bro-2.2, bro-2.3)
-ENV BRO_VERSION bro-2.3.2
+ENV BRO_VERSION bro-2.4
 # Place to install bro
 ENV DST /home/$VIRTUSER/bro
 
@@ -22,4 +22,4 @@ RUN echo "PATH=$PATH:/usr/local/bro/bin/" > /etc/profile.d/bro.sh && chmod 555 /
 RUN echo "export TMOUT=1800; readonly TMOUT" > /etc/profile.d/timeout.sh && chmod 555 /etc/profile.d/timeout.sh
 RUN su -l -c 'ln -s /exercises exercises' $VIRTUSER
 RUN ln -s $DST /usr/local/bro
-RUN setcap cap_net_raw,cap_net_admin=eip $DST/bin/bro
+RUN setcap cap_net_raw=eip $DST/bin/bro
