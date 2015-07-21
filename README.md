@@ -4,24 +4,21 @@ Bro Live! is a Bro training system that is built upon [Jon Schipp](http://jonsch
 
 # Installation
 
-Must have Docker 1.2+ to run our [official Brolive Docker image](https://registry.hub.docker.com/u/broplatform/brolive/) because it requires adding extra capabilities(7)
-to the container (NET_RAW, NET_ADMIN).
+Must have at least Docker 1.2+ to run our [official Brolive Docker image](https://registry.hub.docker.com/u/broplatform/brolive/) because it requires adding extra capabilities(7)
+to the container (NET_RAW).
 
 If you're using a recent Ubuntu then the entire process is taken care of in the following example:
 ```shell
 git clone https://github.com/jonschipp/islet
 cd islet
-make install
-make user-config
-make security-config
-make install-brolive-config
+make bro-training
 ```
 
 ## Manual
 
-If you're not running Ubuntu then you will have to either
-* Install Docker 1.2+ from source
-* Install distribution's Docker package (presuming older than 1.2.0) and build your own image w/o extra capabilities(7) (see *dockerfiles/bro-sudo.conf*)
+If you're not running Debian/Ubuntu then you will have to either
+* Install latest Docker from source
+* Install distribution's Docker package and build your own image
 
 and then
 ```shell
@@ -32,24 +29,10 @@ make user-config
 make security-config
 ```
 
-The following commands will install a Docker image configured with sudo for bro and broctl.
-Use this image if you're using a version of Docker prior to 1.2.0
-```shell
-cp bro-live/dockerfiles/bro-sudo
-cp bro-live/configs/bro-sudo.conf /etc/islet/brolive.conf
-docker build -t brolive - < bro-sudo
-```
-
 If you're running Docker 1.2+ then use the following command to install the Brolive image with network capabilities for Bro.
 ```shell
+cd islet
 make install-brolive-config
-```
-
-Alternatively,
-```shell
-docker pull broplatform/brolive
-docker tag broplatform/brolive brolive
-cp bro-live/configs/bro-cap.conf /etc/islet/brolive.conf
 ```
 
 # Exercises
@@ -71,10 +54,10 @@ Referring you to the [documentation](https://github.com/jonschipp/islet/blob/mas
 
 # Use
 
-Give your students the host IP to ssh to. Default password is demo.
+Give your students the host IP or domain to ssh to. Default password is demo.
 
 ```shell
-ssh demo@<ip>
+ssh demo@islet.server.org
 ```
 
 ## Demo
@@ -118,7 +101,8 @@ Here's a brief demonstration:
 
 # BroLive! Image Usability Notes
 
-* /usr/local/bro is a symlink to /home/demo/bro (owned by demo user)
+* Bro is installed in /opt/bro
 * /home/demo/exercises is a symlink to /exercises
-* gawk, nano, vim, and emacs are installed
-* To use broctl, edit /usr/local/bro/etc/node.cfg (/home/demo/bro/etc/node.cfg) with the correct interface. Probably lo since networking is disabled by default.
+* screen, tmux, gawk, nano, vim, and emacs are installed
+* Bro helper shell functions are in the environment
+* To use broctl, edit /opt/bro/etc/node.cfg with the correct interface. Probably lo since networking is disabled by default.
