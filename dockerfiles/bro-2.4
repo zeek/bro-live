@@ -22,6 +22,7 @@ RUN wget http://www.bro.org/downloads/release/$BRO_VERSION.tar.gz && tar -xzf $B
 RUN cd $BRO_VERSION && ./configure --prefix=$DST && make
 
 USER root
+WORKDIR /home/$VIRTUSER/bro-2.4
 RUN  make install
 RUN rm -rf /home/$VIRTUSER/$BRO_VERSION*
 RUN setcap cap_net_raw=eip $DST/bin/bro
@@ -36,7 +37,8 @@ RUN echo 'topcount() { sort | uniq -c | sort -rn | head -n ${1:-10}; }'     >> /
 RUN echo "set nocompatible" > /home/$VIRTUSER/.vimrc && chown $VIRTUSER /home/$VIRTUSER/.vimrc
 RUN echo "export TMOUT=1800; readonly TMOUT" > /etc/profile.d/timeout.sh && chmod 555 /etc/profile.d/timeout.sh
 RUN su -l -c 'ln -s /exercises exercises' $VIRTUSER
+RUN chmod -R o+w $DST
 
 # Passwords
-#RUN echo "$VIRTUSER:$VIRTUSER"   | chpasswd
-#RUN echo "root:putsomethinghere" | chpasswd
+#RUN echo "$VIRTUSER:$VIRTUSER" | chpasswd
+#RUN echo "root:replaceme" | chpasswd
